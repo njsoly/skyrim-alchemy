@@ -12,8 +12,12 @@ class SkyrimIngredientsAnalyzer {
     }
 
     private val ingredients: List<Ingredient>
+    private val ingredientsByName: Map<String, Ingredient>
     private val allEffectNames: List<String>
     private val ingredientsByEffect: Map<String, List<Ingredient>>
+    private val ingredientsByCategory: Map<String, List<Ingredient>>
+    private val effectsByCategory: Map<String, List<String>>
+
 
     init {
         try {
@@ -27,12 +31,45 @@ class SkyrimIngredientsAnalyzer {
         }
 
         allEffectNames = initializeEffectsList(ingredients)
+
+        ingredientsByName = ingredients.associate { ingredient ->
+            Pair(ingredient.name, ingredient)
+        }
+
         ingredientsByEffect = allEffectNames.associate { effect ->
             Pair<String, List<Ingredient>>(
                 effect,
                 ingredients.filter { ingredient -> ingredient.effects.contains(effect) }
             )
         }
+
+        ingredientsByCategory = categorizeIngredients(ingredients)
+        effectsByCategory = categorizeEffects(allEffectNames)
+    }
+
+    private fun categorizeEffects(allEffectNames: List<String>): Map<String, List<String>> {
+        val categories = mutableMapOf<String, List<String>>()
+
+        SkyrimAlchemyConstants.CATEGORY_KEYWORDS.forEach { categoryKeyword ->
+            categories[categoryKeyword] = allEffectNames.filter { effectName ->
+                effectName.contains(categoryKeyword)
+            }
+        }
+
+        return categories
+    }
+
+    private fun categorizeIngredients(ingredients: List<Ingredient>): Map<String, List<Ingredient>> {
+        val categories = mutableMapOf<String, List<Ingredient>>()
+
+
+        SkyrimAlchemyConstants.MISC_CATEGORIES.forEach{ miscCategory ->
+            categories[miscCategory.key] = ingredients.filter { ingredient ->
+                miscCategory.value.contains(ingredient.name)
+            }
+        }
+
+        return categories
     }
 
     private fun initializeEffectsList(ingredientList: List<Ingredient>) : List<String> {
