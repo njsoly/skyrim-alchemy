@@ -1,4 +1,4 @@
-
+package com.syntj.skyrim
 data class Ingredient(
     val effects: List<String>,
     val image: String,
