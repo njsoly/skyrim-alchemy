@@ -12,7 +12,7 @@ class SkyrimIngredientsAnalyzer {
     }
 
     private val ingredients: List<Ingredient>
-    private val effects: List<String>
+    private val allEffectNames: List<String>
 
     init {
         try {
@@ -25,7 +25,7 @@ class SkyrimIngredientsAnalyzer {
             throw e
         }
 
-        effects = initializeEffectsList(ingredients)
+        allEffectNames = initializeEffectsList(ingredients)
     }
 
     private fun initializeEffectsList(ingredientList: List<Ingredient>) : List<String> {
@@ -59,7 +59,7 @@ class SkyrimIngredientsAnalyzer {
             logger.info("${zeroWeight.size} ingredients have no weight.")
         }
 
-        logger.info("There are ${effects.size} effects.")
+        logger.info("There are ${allEffectNames.size} effects.")
     }
 }
 
