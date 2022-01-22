@@ -12,11 +12,11 @@ class SkyrimIngredientsAnalyzer {
     }
 
     private val ingredients: List<Ingredient>
+    private val effects: List<String>
 
     init {
         try {
-        ingredients = IngredientsJsonImporter().readIngredientsJson()
-
+            ingredients = IngredientsJsonImporter().readIngredientsJson()
         } catch (ioe: IOException) {
             logger.error("IO exception reading in JSON: ${ioe.message}", ioe)
             throw ioe
@@ -24,11 +24,23 @@ class SkyrimIngredientsAnalyzer {
             logger.error("Problem reading ingredients JSON: ${e.message}", e)
             throw e
         }
+
+        effects = initializeEffectsList(ingredients)
+    }
+
+    private fun initializeEffectsList(ingredientList: List<Ingredient>) : List<String> {
+        val allEffects = mutableSetOf<String>()
+        ingredientList.forEach { ingredient ->
+            ingredient.effects.forEach { singleEffect ->
+                allEffects.add(singleEffect)
+            }
+        }
+
+        return allEffects.toList().sorted()
     }
 
     fun run() {
-        println("hi there, welcome to ${this.javaClass.simpleName}")
-
+        logger.info("hi there, welcome to ${this.javaClass.simpleName}")
 
         val mostExpensive = ingredients.maxByOrNull{ it.value }!!
         val heaviest = ingredients.maxByOrNull { it.weight }!!
@@ -46,6 +58,8 @@ class SkyrimIngredientsAnalyzer {
         } else {
             logger.info("${zeroWeight.size} ingredients have no weight.")
         }
+
+        logger.info("There are ${effects.size} effects.")
     }
 }
 
