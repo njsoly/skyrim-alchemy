@@ -13,6 +13,7 @@ class SkyrimIngredientsAnalyzer {
 
     private val ingredients: List<Ingredient>
     private val allEffectNames: List<String>
+    private val ingredientsByEffect: Map<String, List<Ingredient>>
 
     init {
         try {
@@ -26,6 +27,12 @@ class SkyrimIngredientsAnalyzer {
         }
 
         allEffectNames = initializeEffectsList(ingredients)
+        ingredientsByEffect = allEffectNames.associate { effect ->
+            Pair<String, List<Ingredient>>(
+                effect,
+                ingredients.filter { ingredient -> ingredient.effects.contains(effect) }
+            )
+        }
     }
 
     private fun initializeEffectsList(ingredientList: List<Ingredient>) : List<String> {
@@ -39,9 +46,7 @@ class SkyrimIngredientsAnalyzer {
         return allEffects.toList().sorted()
     }
 
-    fun run() {
-        logger.info("hi there, welcome to ${this.javaClass.simpleName}")
-
+    private fun printAnalysis(ingredients: List<Ingredient>) {
         val mostExpensive = ingredients.maxByOrNull{ it.value }!!
         val heaviest = ingredients.maxByOrNull { it.weight }!!
         val zeroWeight = ingredients.filter { ingredient -> ingredient.weight == 0.0 }
@@ -59,7 +64,24 @@ class SkyrimIngredientsAnalyzer {
             logger.info("${zeroWeight.size} ingredients have no weight.")
         }
 
+        if (zeroValue.isNotEmpty()) {
+            logger.info(
+                "${zeroValue.size} ingredients have no weight: \n" +
+                        zeroValue.map { it.name }.joinToString(separator = ",\n")
+            )
+        } else {
+            logger.info("${zeroValue.size} ingredients have no weight.")
+        }
+
         logger.info("There are ${allEffectNames.size} effects.")
+    }
+
+    fun run() {
+        logger.info("hi there, welcome to ${this.javaClass.simpleName}")
+
+        printAnalysis(ingredients)
+
+        logger.info("goodbye from ${this.javaClass.simpleName}.")
     }
 }
 
