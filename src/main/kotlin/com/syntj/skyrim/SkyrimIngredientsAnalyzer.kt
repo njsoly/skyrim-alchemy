@@ -1,8 +1,7 @@
-
+package com.syntj.skyrim
 
 fun main() {
     println("hi there")
-
 
     val ingredients = IngredientsJsonImporter().readIngredientsJson()
 
