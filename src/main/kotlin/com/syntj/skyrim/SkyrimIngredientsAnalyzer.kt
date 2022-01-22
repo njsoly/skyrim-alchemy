@@ -66,11 +66,11 @@ class SkyrimIngredientsAnalyzer {
 
         if (zeroValue.isNotEmpty()) {
             logger.info(
-                "${zeroValue.size} ingredients have no weight: \n" +
+                "${zeroValue.size} ingredients have no value: \n" +
                         zeroValue.map { it.name }.joinToString(separator = ",\n")
             )
         } else {
-            logger.info("${zeroValue.size} ingredients have no weight.")
+            logger.info("${zeroValue.size} ingredients have no value.")
         }
 
         logger.info("There are ${allEffectNames.size} effects.")
