@@ -1,5 +1,6 @@
 package com.syntj.skyrim
-data class Ingredient(
+
+data class Ingredient (
     val effects: List<String>,
     val image: String,
     val value: Double,
