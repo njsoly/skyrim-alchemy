@@ -18,7 +18,6 @@ class IngredientsJsonImporter {
     fun readIngredientsJson(path: String = JSON_PATH) : List<Ingredient> {
         logger.debug("hi there")
 
-
         val ingredients = objectMapper.readValue(File("data/ingredients.json"), IngredientList::class.java).ingredients
 
         logger.debug("ingredients has ${ingredients.size} in it.")
