@@ -5,23 +5,23 @@ import org.slf4j.LoggerFactory
 import java.io.IOException
 import java.lang.Exception
 
-class SkyrimIngredientsAnalyzer {
+open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) {
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(SkyrimIngredientsAnalyzer::class.java)
     }
 
-    private val ingredients: List<Ingredient>
-    private val ingredientsByName: Map<String, Ingredient>
-    private val allEffectNames: List<String>
-    private val ingredientsByEffect: Map<String, List<Ingredient>>
-    private val ingredientsByCategory: Map<String, List<Ingredient>>
-    private val effectsByCategory: Map<String, List<String>>
+    val ingredients: List<Ingredient>
+    val ingredientsByName: Map<String, Ingredient>
+    val allEffectNames: List<String>
+    val ingredientsByEffect: Map<String, List<Ingredient>>
+    val ingredientsByCategory: Map<String, List<Ingredient>>
+    val effectsByCategory: Map<String, List<String>>
 
 
     init {
         try {
-            ingredients = IngredientsJsonImporter().readIngredientsJson()
+            ingredients = IngredientsJsonImporter().readIngredientsJson(jsonPath)
         } catch (ioe: IOException) {
             logger.error("IO exception reading in JSON: ${ioe.message}", ioe)
             throw ioe
