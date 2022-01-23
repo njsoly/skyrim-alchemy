@@ -14,12 +14,8 @@ class IngredientsJsonImporter {
         val logger : Logger = LoggerFactory.getLogger(IngredientsJsonImporter::class.java)
     }
 
-    fun readIngredientsJson(path: String = JSON_PATH) : List<Ingredient> {
-        logger.debug("hi there")
+    fun readIngredientsJson(path: String = JSON_PATH): List<Ingredient> {
 
-        val ingredients = objectMapper.readValue(File("data/ingredients.json"), IngredientList::class.java).ingredients
-
-        logger.debug("ingredients has ${ingredients.size} in it.")
-        return ingredients
+        return objectMapper.readValue(File(path), IngredientList::class.java).ingredients
     }
 }

@@ -84,6 +84,8 @@ class SkyrimIngredientsAnalyzer {
     }
 
     private fun printAnalysis(ingredients: List<Ingredient>) {
+        logger.debug("ingredients has ${ingredients.size} in it.")
+
         val mostExpensive = ingredients.maxByOrNull{ it.value }!!
         val heaviest = ingredients.maxByOrNull { it.weight }!!
         val zeroWeight = ingredients.filter { ingredient -> ingredient.weight == 0.0 }
