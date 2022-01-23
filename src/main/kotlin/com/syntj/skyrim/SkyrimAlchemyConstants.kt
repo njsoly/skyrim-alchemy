@@ -36,7 +36,7 @@ object SkyrimAlchemyConstants {
         "Fortify",
         "Lingering",
         "Ravage",
-        "Regenerate",
+        "Regen",
         "Resist",
         "Restore",
     )
