@@ -9,6 +9,7 @@ object SkyrimAlchemyConstants {
     val KNOWN_AS_MUSHROOMS: List<String> = listOf(
         "Bleeding Crown",
         "Blisterwort",
+        "Glowing Mushroom",
         "Imp Stool",
         "Namira's Rot",
         "Scaly Pholiota",
@@ -20,10 +21,19 @@ object SkyrimAlchemyConstants {
         "Blisterwort",
         "Blue Mountain Flower",
         "Canis Root",
+        "Dragon's Tongue",
+        "Glowing Mushroom",
+        "Grass Pod",
         "Imp Stool",
+        "Jazbay Grapes",
+        "Juniper Berries",
+        "Namira's Rot",
         "Red Mountain Flower",
         "Purple Mountain Flower",
-        "Snowberries"
+        "Snowberries",
+        "Swamp Fungal Pod",
+        "Tundra Cotton",
+        "Wheat"
     )
 
     val MISC_CATEGORIES: Map<String, List<String>> = mapOf(
