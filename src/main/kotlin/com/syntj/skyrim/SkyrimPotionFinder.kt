@@ -32,17 +32,37 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
     }
 
 
-    fun bruteForce() : List<SkyrimPotionRecipe> {
+    fun bruteForceFindThreeIngredientFormulasWithMostEffects() : List<SkyrimPotionRecipe> {
         val recipeSets = mutableSetOf<Set<Ingredient>>()
 
         ingredients.forEach { ingredientX ->
             ingredients.minus(ingredientX).forEach { ingredientY ->
                 ingredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
                     val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY, ingredientZ))
-                    if (recipe.getEffects().size > 3) {
+                    if (recipe.getEffects().size >= 3) {
                         recipeSets.add(recipe.ingredients.toSet())
                     }
                 }
+            }
+        }
+
+        val recipes = recipeSets.map { recipeSet -> SkyrimPotionRecipe(recipeSet.toList()) }
+
+        return recipes.sortedByDescending {
+            it.getEffects().size
+        }
+    }
+    fun bruteForceFindTwoIngredientFormulasWithMostEffects() : List<SkyrimPotionRecipe> {
+        val recipeSets = mutableSetOf<Set<Ingredient>>()
+
+        ingredients.forEach { ingredientX ->
+            ingredients.minus(ingredientX).forEach { ingredientY ->
+//                ingredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
+                    val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY))
+                    if (recipe.getEffects().size >= 2) {
+                        recipeSets.add(recipe.ingredients.toSet())
+                    }
+//                }
             }
         }
 
@@ -76,7 +96,8 @@ fun main() {
 
     logger.info("Restore health recipe: \n${ restoreHealthRecipe.getStats() }")
 
-    val recipes = skyrimPotionFinder.bruteForce()
+//    val recipes = skyrimPotionFinder.bruteForceFindThreeIngredientFormulasWithMostEffects()
+    val recipes = skyrimPotionFinder.bruteForceFindTwoIngredientFormulasWithMostEffects()
     logger.info("top effective potions: ")
     recipes.slice(0..50).forEach{
         logger.info(it.getStats())
