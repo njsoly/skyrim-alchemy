@@ -2,12 +2,16 @@ package com.syntj.skyrim
 
 import com.syntj.skyrim.Effects.*
 
+@Suppress("unused")
 enum class Ingredients (
     val description: String,
     val weight: Double?,
     val value: Double?,
     val image: String?,
     val effects: List<Effects?>,
+    val plantable: Boolean? = null,
+    val solstheimOnly: Boolean? = null,
+    val khajitsOnly: Boolean? = null,
 ) {
     AbeceanLongfin(description = "Abecean Longfin", weight = 0.5, value = 15.0, image = "http://www.uesp.net/w/images/thumb/7/7a/SR-icon-ingredient-Abecean_Longfin.png/48px-SR-icon-ingredient-Abecean_Longfin.png",
         effects = listOf(WeaknessToFrost, FortifySneak, WeaknessToPoison, FortifyRestoration)
@@ -282,4 +286,5 @@ enum class Ingredients (
     WispWrappings(description = "Wisp Wrappings", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/9/9d/SR-icon-ingredient-Wisp_Wrappings.png/48px-SR-icon-ingredient-Wisp_Wrappings.png",
         effects = listOf(RestoreStamina, FortifyDestruction, FortifyCarryWeight, ResistMagic)
     ),
+    
 }
