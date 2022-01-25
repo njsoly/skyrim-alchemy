@@ -5,10 +5,10 @@ import com.syntj.skyrim.Effects.*
 @Suppress("unused")
 enum class Ingredients (
     val description: String,
-    val weight: Double?,
-    val value: Double?,
-    val image: String?,
-    val effects: List<Effects?>,
+    val weight: Double? = null,
+    val value: Double? = null,
+    val image: String? = null,
+    val effects: List<Effects?> = listOf(null, null, null, null),
     val plantable: Boolean? = null,
     val solstheimOnly: Boolean? = null,
     val khajitsOnly: Boolean? = null,
@@ -16,7 +16,11 @@ enum class Ingredients (
     AbeceanLongfin(description = "Abecean Longfin", weight = 0.5, value = 15.0, image = "http://www.uesp.net/w/images/thumb/7/7a/SR-icon-ingredient-Abecean_Longfin.png/48px-SR-icon-ingredient-Abecean_Longfin.png",
         effects = listOf(WeaknessToFrost, FortifySneak, WeaknessToPoison, FortifyRestoration)
     ),
-    BearClaws(description = "Bear Claws", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/0/04/SR-icon-ingredient-Bear_Claws.png/48px-SR-icon-ingredient-Bear_Claws.png",
+    BearClaws(
+        description = "Bear Claws",
+        weight = 0.1,
+        value = 2.0,
+        image = "http://www.uesp.net/w/images/thumb/0/04/SR-icon-ingredient-Bear_Claws.png/48px-SR-icon-ingredient-Bear_Claws.png",
         effects = listOf(RestoreStamina, FortifyHealth, FortifyOneHanded, DamageMagickaRegen)
     ),
     Bee(description = "Bee", weight = 0.1, value = 3.0, image = "http://www.uesp.net/w/images/thumb/b/b8/SR-icon-ingredient-Bee.png/48px-SR-icon-ingredient-Bee.png",
@@ -37,7 +41,11 @@ enum class Ingredients (
     BlueDartwing(description = "Blue Dartwing", weight = 0.1, value = 1.0, image = "http://www.uesp.net/w/images/thumb/e/ee/SR-icon-ingredient-Blue_Dartwing.png/48px-SR-icon-ingredient-Blue_Dartwing.png",
         effects = listOf(ResistShock, FortifyPickpocket, RestoreHealth, Fear)
     ),
-    BlueMountainFlower(description = "Blue Mountain Flower", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/3/38/SR-icon-ingredient-Blue_Mountain_Flower.png/48px-SR-icon-ingredient-Blue_Mountain_Flower.png",
+    BlueMountainFlower(
+        description = "Blue Mountain Flower",
+        weight = 0.1,
+        value = 2.0,
+        image = "http://www.uesp.net/w/images/thumb/3/38/SR-icon-ingredient-Blue_Mountain_Flower.png/48px-SR-icon-ingredient-Blue_Mountain_Flower.png",
         effects = listOf(RestoreHealth, FortifyConjuration, FortifyHealth, DamageMagickaRegen)
     ),
     BoneMeal(description = "Bone Meal", weight = 0.5, value = 5.0, image = "http://www.uesp.net/w/images/thumb/f/f9/SR-icon-ingredient-Bone_Meal.png/48px-SR-icon-ingredient-Bone_Meal.png",
@@ -88,7 +96,7 @@ enum class Ingredients (
     ElvesEar(description = "Elves Ear", weight = 0.1, value = 10.0, image = "http://www.uesp.net/w/images/thumb/7/7a/SR-icon-ingredient-Elves_Ear.png/48px-SR-icon-ingredient-Elves_Ear.png",
         effects = listOf(RestoreMagicka, FortifyMarksman, WeaknessToFrost, ResistFire)
     ),
-    EyeofSabreCat(description = "Eye of Sabre Cat", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/4/4e/SR-icon-ingredient-Eye_of_Sabre_Cat.png/48px-SR-icon-ingredient-Eye_of_Sabre_Cat.png",
+    EyeOfSabreCat(description = "Eye of Sabre Cat", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/4/4e/SR-icon-ingredient-Eye_of_Sabre_Cat.png/48px-SR-icon-ingredient-Eye_of_Sabre_Cat.png",
         effects = listOf(RestoreStamina, RavageHealth, DamageMagicka, RestoreHealth)
     ),
     FalmerEar(description = "Falmer Ear", weight = 0.2, value = 10.0, image = "http://www.uesp.net/w/images/thumb/6/6e/SR-icon-ingredient-Falmer_Ear.png/48px-SR-icon-ingredient-Falmer_Ear.png",
@@ -286,5 +294,36 @@ enum class Ingredients (
     WispWrappings(description = "Wisp Wrappings", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/9/9d/SR-icon-ingredient-Wisp_Wrappings.png/48px-SR-icon-ingredient-Wisp_Wrappings.png",
         effects = listOf(RestoreStamina, FortifyDestruction, FortifyCarryWeight, ResistMagic)
     ),
-    
+
+    // Solstheim
+    AshenGrassPod(
+        description = "Ashen Grass Pod",
+        solstheimOnly = true,
+    ),
+    AshHopperJelly(
+        description = "Ash Hopper Jelly",
+        solstheimOnly = true,
+    ),
+
+    // Khajit
+    CorkbulbRoot(
+        description = "Corkbulb Root",
+        khajitsOnly = true
+    ),
+    FirePetal(
+        description = "Fire Petal",
+        khajitsOnly = true
+    ),
+    Saltrice(
+        description = "Saltrice"
+    ),
+    ScribJelly(
+        description = "Scrib Jelly",
+        khajitsOnly = true
+    ),
+    SteelBlueEntoloma(
+        description = "Steel-Blue Entoloma",
+        khajitsOnly = true
+    ),
+
 }
