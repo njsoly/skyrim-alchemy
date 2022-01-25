@@ -303,11 +303,16 @@ enum class Ingredient (
         effects = listOf(ResistFire, WeaknessToShock, null, FortifySneak),
         solstheimOnly = true,
     ),
+    AshCreepCluster(
+        description = "Ash Creep Cluster",
+        effects = listOf(DamageStamina, null, ResistFire, FortifyDestruction),
+        solstheimOnly = true,
+    ),
     AshHopperJelly(
         description = "Ash Hopper Jelly",
         weight = 0.3,
         value = 20.0,
-        effects = listOf(null, null, ResistShock, WeaknessToFrost),
+        effects = listOf(RestoreHealth, null, ResistShock, WeaknessToFrost),
         solstheimOnly = true,
     ),
     FelsaadTernFeathers(
@@ -342,22 +347,40 @@ enum class Ingredient (
     // Khajit
     CorkbulbRoot(
         description = "Corkbulb Root",
+        effects = listOf(null, RestoreHealth, ResistShock, null),
         khajitsOnly = true
     ),
     FirePetal(
         description = "Fire Petal",
+        weight = 0.1,
+        value = 30.0,
         khajitsOnly = true
+    ),
+    RedKelpGasBladder(
+        description = "Red Kelp Gas Bladder",
+        weight = 0.1,
+        value = 20.0,
+        effects = listOf(RegenerateStamina, null, null, null),
+        khajitsOnly = true,
     ),
     Saltrice(
         description = "Saltrice",
+        weight = 0.1,
+        value = 6.0,
+        effects = listOf(RestoreStamina, null, null, null),
         khajitsOnly = true,
     ),
-    ScribJelly(
-        description = "Scrib Jelly",
+    ScribJerky(
+        description = "Scrib Jerky",
+        weight = 0.2,
+        value = 15.0,
         khajitsOnly = true
     ),
     SteelBlueEntoloma(
         description = "Steel-Blue Entoloma",
+        weight = 0.1,
+        value = 2.0,
+        effects = listOf(RestoreMagicka, FortifyDestruction, ResistFrost, FortifyCarryWeight),
         khajitsOnly = true
     ),
 
