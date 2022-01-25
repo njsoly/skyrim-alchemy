@@ -298,10 +298,44 @@ enum class Ingredient (
     // Solstheim
     AshenGrassPod(
         description = "Ashen Grass Pod",
+        weight = 0.1,
+        value = 1.0,
+        effects = listOf(ResistFire, WeaknessToShock, null, FortifySneak),
         solstheimOnly = true,
     ),
     AshHopperJelly(
         description = "Ash Hopper Jelly",
+        weight = 0.3,
+        value = 20.0,
+        effects = listOf(null, null, ResistShock, WeaknessToFrost),
+        solstheimOnly = true,
+    ),
+    FelsaadTernFeathers(
+        description = "Felsaad Tern Feathers",
+        weight = 0.1,
+        value = 15.0,
+        effects = listOf(null, FortifyLightArmor, null, null),
+        solstheimOnly = true,
+    ),
+    Scathecraw(
+        description = "Scathecraw",
+        weight = 0.1,
+        value = 10.0,
+        effects = listOf(RavageHealth, RavageStamina, RavageMagicka, LingeringDamageHealth),
+        solstheimOnly = true,
+    ),
+    SpawnAsh(
+        description = "Spawn Ash",
+        weight = 0.1,
+        value = 20.0,
+        effects = listOf(RavageStamina, null, null, RavageMagicka),
+        solstheimOnly = true,
+    ),
+    TramaRoot(
+        description = "Trama Root",
+        weight = 0.2,
+        value = 1.0,
+        effects = listOf(WeaknessToShock, null, DamageMagicka, Slow),
         solstheimOnly = true,
     ),
 
