@@ -121,12 +121,32 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         printAnalysis(ingredients)
         logger.info("ingredient 0: \n" + ingredients[0])
 
-        println("All effects:")
-        allEffectNames.forEach { effectName ->
-            println(effectName.replace(" ", "") + "(\"" + effectName + "\"),")
-        }
+        printIngredientsInEnumForm()
 
         logger.info("goodbye from ${this.javaClass.simpleName}.")
+    }
+
+    private fun printIngredientsInEnumForm() {
+        logger.info("all ingredients in Enum format: ")
+
+        ingredients.forEach{ ingredient ->
+            val sb = StringBuffer()
+            sb.append("\t" + ingredient.name.replace(" ", "").replace("-", "").replace("'", ""))
+            sb.append("(description = \"${ingredient.name}\", ")
+            sb.append("weight = " + ingredient.weight + ", ")
+            sb.append("value = " + ingredient.value + ", ")
+            sb.append("image = \"" + ingredient.image + "\", ")
+            sb.append("\n\t\teffects = listOf(")
+
+//            sb.append(ingredient.effects.joinToString ( separator = ", " ))
+            ingredient.effects.forEach { effect ->
+                sb.append(Effects.values().first{ it.description == effect}.name + ", ")
+            }
+            sb.append(")\n),")
+
+
+            println(sb.toString())
+        }
     }
 }
 
