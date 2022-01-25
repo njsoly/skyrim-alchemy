@@ -119,6 +119,12 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         logger.info("hi there, welcome to ${this.javaClass.simpleName}")
 
         printAnalysis(ingredients)
+        logger.info("ingredient 0: \n" + ingredients[0])
+
+        println("All effects:")
+        allEffectNames.forEach { effectName ->
+            println(effectName.replace(" ", "") + "(\"" + effectName + "\"),")
+        }
 
         logger.info("goodbye from ${this.javaClass.simpleName}.")
     }

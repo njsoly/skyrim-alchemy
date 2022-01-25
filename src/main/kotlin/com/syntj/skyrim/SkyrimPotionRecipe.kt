@@ -20,7 +20,6 @@ open class SkyrimPotionRecipe(val ingredients: List<Ingredient>) {
         val grouped = allEffects.groupBy { it }.filter{ groupedEntry -> groupedEntry.value.size > 1 }
         val effects = grouped.map { it.key }
 
-
         return effects
     }
 
