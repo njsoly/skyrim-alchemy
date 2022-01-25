@@ -16,7 +16,7 @@ class IngredientsJsonImporter {
         val logger : Logger = LoggerFactory.getLogger(IngredientsJsonImporter::class.java)
     }
 
-    fun readIngredientsJson(path: String = JSON_PATH): List<Ingredient> {
+    fun readIngredientsJson(path: String = JSON_PATH): List<IngredientFromJson> {
 
         checkIfFileIsReadable(path)
 

@@ -1,6 +1,6 @@
 package com.syntj.skyrim
 
-enum class Effects (val description: String){
+enum class Effect (val description: String){
     CureDisease("Cure Disease"),
     DamageHealth("Damage Health"),
     DamageMagicka("Damage Magicka"),

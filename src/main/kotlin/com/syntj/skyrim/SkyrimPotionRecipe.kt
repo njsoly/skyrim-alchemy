@@ -1,6 +1,6 @@
 package com.syntj.skyrim
 
-open class SkyrimPotionRecipe(val ingredients: List<Ingredient>) {
+open class SkyrimPotionRecipe(val ingredients: List<IngredientFromJson>) {
 
     fun getPrice() : Double {
         return ingredients.sumOf { it.value }

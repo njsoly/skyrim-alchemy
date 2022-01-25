@@ -17,8 +17,8 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
      * So, if some ingredient matches this [ingredient][ingredientA] on more than one effect,
      * the second ingredient will appear in the list multiple times, one for each effect matched.
      */
-    fun findMatchesFor(ingredientA: Ingredient) : List<Pair<Ingredient, String>> {
-        val matches = mutableListOf<Pair<Ingredient, String>>()
+    fun findMatchesFor(ingredientA: IngredientFromJson) : List<Pair<IngredientFromJson, String>> {
+        val matches = mutableListOf<Pair<IngredientFromJson, String>>()
 
         this.ingredients.minus(ingredientA).forEach { ingredientB ->
             ingredientB.effects.forEach { ingredientBEffect ->
@@ -33,7 +33,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
 
 
     fun bruteForceFindThreeIngredientFormulasWithMostEffects() : List<SkyrimPotionRecipe> {
-        val recipeSets = mutableSetOf<Set<Ingredient>>()
+        val recipeSets = mutableSetOf<Set<IngredientFromJson>>()
 
         ingredients.forEach { ingredientX ->
             ingredients.minus(ingredientX).forEach { ingredientY ->
@@ -53,7 +53,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
         }
     }
     fun bruteForceFindTwoIngredientFormulasWithMostEffects() : List<SkyrimPotionRecipe> {
-        val recipeSets = mutableSetOf<Set<Ingredient>>()
+        val recipeSets = mutableSetOf<Set<IngredientFromJson>>()
 
         ingredients.forEach { ingredientX ->
             ingredients.minus(ingredientX).forEach { ingredientY ->
@@ -80,7 +80,7 @@ fun main() {
 
     val wheat = skyrimPotionFinder.ingredients.firstOrNull { it.name == "Wheat" }!!
 
-    val wheatMatches: List<Pair<Ingredient, String>> = skyrimPotionFinder.findMatchesFor(wheat)
+    val wheatMatches: List<Pair<IngredientFromJson, String>> = skyrimPotionFinder.findMatchesFor(wheat)
     logger.info("matches on ${wheat.name}: " +
         wheatMatches.map {
             "(${it.first.name}, ${it.second})"

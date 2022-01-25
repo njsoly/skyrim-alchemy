@@ -11,11 +11,11 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         val logger: Logger = LoggerFactory.getLogger(SkyrimIngredientsAnalyzer::class.java)
     }
 
-    val ingredients: List<Ingredient>
-    val ingredientsByName: Map<String, Ingredient>
+    val ingredients: List<IngredientFromJson>
+    val ingredientsByName: Map<String, IngredientFromJson>
     val allEffectNames: List<String>
-    val ingredientsByEffect: Map<String, List<Ingredient>>
-    val ingredientsByCategory: Map<String, List<Ingredient>>
+    val ingredientsByEffect: Map<String, List<IngredientFromJson>>
+    val ingredientsByCategory: Map<String, List<IngredientFromJson>>
     val effectsByCategory: Map<String, List<String>>
 
 
@@ -37,7 +37,7 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         }
 
         ingredientsByEffect = allEffectNames.associate { effect ->
-            Pair<String, List<Ingredient>>(
+            Pair<String, List<IngredientFromJson>>(
                 effect,
                 ingredients.filter { ingredient -> ingredient.effects.contains(effect) }
             )
@@ -59,8 +59,8 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         return categories
     }
 
-    private fun categorizeIngredients(ingredients: List<Ingredient>): Map<String, List<Ingredient>> {
-        val categories = mutableMapOf<String, List<Ingredient>>()
+    private fun categorizeIngredients(ingredients: List<IngredientFromJson>): Map<String, List<IngredientFromJson>> {
+        val categories = mutableMapOf<String, List<IngredientFromJson>>()
 
 
         SkyrimAlchemyConstants.MISC_CATEGORIES.forEach{ miscCategory ->
@@ -72,7 +72,7 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         return categories
     }
 
-    private fun initializeEffectsList(ingredientList: List<Ingredient>) : List<String> {
+    private fun initializeEffectsList(ingredientList: List<IngredientFromJson>) : List<String> {
         val allEffects = mutableSetOf<String>()
         ingredientList.forEach { ingredient ->
             ingredient.effects.forEach { singleEffect ->
@@ -83,7 +83,7 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
         return allEffects.toList().sorted()
     }
 
-    private fun printAnalysis(ingredients: List<Ingredient>) {
+    private fun printAnalysis(ingredients: List<IngredientFromJson>) {
         logger.debug("ingredients has ${ingredients.size} in it.")
 
         val mostExpensive = ingredients.maxByOrNull{ it.value }!!
@@ -140,7 +140,7 @@ open class SkyrimIngredientsAnalyzer (jsonPath: String = SkyrimAlchemyConstants.
 
 //            sb.append(ingredient.effects.joinToString ( separator = ", " ))
             ingredient.effects.forEach { effect ->
-                sb.append(Effects.values().first{ it.description == effect}.name + ", ")
+                sb.append(Effect.values().first{ it.description == effect}.name + ", ")
             }
             sb.append(")\n),")
 
