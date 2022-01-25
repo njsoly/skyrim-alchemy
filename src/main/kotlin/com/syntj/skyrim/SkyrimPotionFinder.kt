@@ -32,6 +32,27 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
     }
 
 
+    fun bruteForce() : List<SkyrimPotionRecipe> {
+        val recipeSets = mutableSetOf<Set<Ingredient>>()
+
+        ingredients.forEach { ingredientX ->
+            ingredients.minus(ingredientX).forEach { ingredientY ->
+                ingredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
+                    val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY, ingredientZ))
+                    if (recipe.getEffects().size > 3) {
+                        recipeSets.add(recipe.ingredients.toSet())
+                    }
+                }
+            }
+        }
+
+        val recipes = recipeSets.map { recipeSet -> SkyrimPotionRecipe(recipeSet.toList()) }
+
+        return recipes.sortedByDescending {
+            it.getEffects().size
+        }
+    }
+
 }
 
 fun main() {
@@ -45,4 +66,19 @@ fun main() {
             "(${it.first.name}, ${it.second})"
         }.toString()
     )
+
+    val restoreHealthRecipe = SkyrimPotionRecipe(
+        listOf(
+            skyrimPotionFinder.ingredientsByName["Wheat"]!!,
+            skyrimPotionFinder.ingredientsByName["Blue Mountain Flower"]!!
+        )
+    )
+
+    logger.info("Restore health recipe: \n${ restoreHealthRecipe.getStats() }")
+
+    val recipes = skyrimPotionFinder.bruteForce()
+    logger.info("top effective potions: ")
+    recipes.slice(0..50).forEach{
+        logger.info(it.getStats())
+    }
 }
