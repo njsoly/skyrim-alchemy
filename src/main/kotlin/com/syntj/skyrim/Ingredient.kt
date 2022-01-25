@@ -349,7 +349,8 @@ enum class Ingredient (
         khajitsOnly = true
     ),
     Saltrice(
-        description = "Saltrice"
+        description = "Saltrice",
+        khajitsOnly = true,
     ),
     ScribJelly(
         description = "Scrib Jelly",
