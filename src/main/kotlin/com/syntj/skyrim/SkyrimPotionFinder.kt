@@ -62,7 +62,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
             allIngredients.minus(ingredientX).forEach { ingredientY ->
                 allIngredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
                     val recipe = SkyrimPotionRecipe_Enum(listOf(ingredientX, ingredientY, ingredientZ))
-                    if (recipe.getEffects().size >= 3) {
+                    if (recipe.effects.size >= 3) {
                         recipeSets.add(recipe.ingredients.toSet())
                     }
                 }
@@ -72,7 +72,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
         val recipes = recipeSets.map { recipeSet -> SkyrimPotionRecipe_Enum(recipeSet.toList()) }
 
         return recipes.sortedByDescending {
-            it.getEffects().size
+            it.effects.size
         }
     }
 
@@ -131,10 +131,10 @@ fun main() {
     val recipes3_enum = skyrimPotionFinder.bruteForceFindThreeIngredientFormulasWithMostEffects_enum()
     threeIngredTimer_enum.stop()
 
-    logger.info("top effective potions for three ingredients: ")
-    val sb = StringBuffer()
+    val sb = StringBuffer("top effective potions for three ingredients: \n")
     recipes3_enum.slice(0..50).forEach{
         sb.append(it.getStats())
+        sb.append("\n")
     }
     logger.info(sb.toString())
 
