@@ -9,6 +9,13 @@ enum class Ingredient (
     val value: Double? = null,
     val image: String? = null,
     val effects: List<Effect?> = listOf(null, null, null, null),
+    /** Whether or not this ingredient may be found at home, at a somewhat regular interval.
+     *
+     * This includes things that can be planted, bugs that can be caught, etc.
+     *
+     * e.g. "Chicken's Egg" doesn't make the cut because of how rarely they come along.
+     * "Blue Butterfly Wing", however, does, because they show up in a built alchemy room often enough.
+     * */
     val farmable: Boolean? = false,
     val solstheimOnly: Boolean = false,
     val khajitsOnly: Boolean = false,
@@ -31,7 +38,7 @@ enum class Ingredient (
     ),
     Bee(description = "Bee", weight = 0.1, value = 3.0, image = "http://www.uesp.net/w/images/thumb/b/b8/SR-icon-ingredient-Bee.png/48px-SR-icon-ingredient-Bee.png",
         effects = listOf(RestoreStamina, RavageStamina, RegenerateStamina, WeaknessToShock),
-        farmable = false,
+        farmable = true,
     ),
     BeehiveHusk(description = "Beehive Husk", weight = 1.0, value = 5.0, image = "http://www.uesp.net/w/images/thumb/8/84/SR-icon-ingredient-Beehive_Husk.png/48px-SR-icon-ingredient-Beehive_Husk.png",
         effects = listOf(ResistPoison, FortifyLightArmor, FortifySneak, FortifyDestruction),
@@ -47,7 +54,7 @@ enum class Ingredient (
     ),
     BlueButterflyWing(description = "Blue Butterfly Wing", weight = 0.1, value = 2.0, image = "http://www.uesp.net/w/images/thumb/1/16/SR-icon-ingredient-Blue_Butterfly_Wing.png/48px-SR-icon-ingredient-Blue_Butterfly_Wing.png",
         effects = listOf(DamageStamina, FortifyConjuration, DamageMagickaRegen, FortifyEnchanting),
-        farmable = false,
+        farmable = true,
     ),
     BlueDartwing(description = "Blue Dartwing", weight = 0.1, value = 1.0, image = "http://www.uesp.net/w/images/thumb/e/ee/SR-icon-ingredient-Blue_Dartwing.png/48px-SR-icon-ingredient-Blue_Dartwing.png",
         effects = listOf(ResistShock, FortifyPickpocket, RestoreHealth, Fear),
@@ -71,7 +78,7 @@ enum class Ingredient (
     ),
     ButterflyWing(description = "Butterfly Wing", weight = 0.1, value = 3.0, image = "http://www.uesp.net/w/images/thumb/1/16/SR-icon-ingredient-Blue_Butterfly_Wing.png/48px-SR-icon-ingredient-Blue_Butterfly_Wing.png",
         effects = listOf(RestoreHealth, FortifyBarter, LingeringDamageStamina, DamageMagicka),
-        farmable = false,
+        farmable = true,
     ),
     CanisRoot(description = "Canis Root", weight = 0.1, value = 5.0, image = "http://www.uesp.net/w/images/thumb/f/f6/SR-icon-ingredient-Canis_Root.png/48px-SR-icon-ingredient-Canis_Root.png",
         effects = listOf(DamageStamina, FortifyOneHanded, FortifyMarksman, Paralysis),
