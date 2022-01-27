@@ -8,8 +8,11 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(SkyrimPotionFinder::class.java)
-
     }
+
+    var twoIngredCount = 0
+    var threeIngredCounter = 0
+    var threeIngredCounterEnum = 0
 
     /**
      * Returns a list of all matches against any of this [ingredient][ingredientA]'s effects,
@@ -34,6 +37,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
 
 
     fun bruteForceFindThreeIngredientFormulasWithMostEffects_json() : List<SkyrimPotionRecipe> {
+        threeIngredCounter = 0
         val recipeSets = mutableSetOf<Set<IngredientFromJson>>()
 
         ingredients.forEach { ingredientX ->
@@ -43,6 +47,8 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
                     if (recipe.getEffects().size >= 3) {
                         recipeSets.add(recipe.ingredients.toSet())
                     }
+
+                    threeIngredCounter++
                 }
             }
         }
@@ -54,37 +60,53 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
         }
     }
     fun bruteForceFindThreeIngredientFormulasWithMostEffects_enum() : List<SkyrimPotionRecipe_Enum> {
+        threeIngredCounterEnum = 0
         val recipeSets = mutableSetOf<Set<Ingredient>>()
+//        val recipes = mutableSetOf<SkyrimPotionRecipe_Enum>()
 
         val allIngredients = Ingredient.values().toList()
 
         allIngredients.forEach { ingredientX ->
             allIngredients.minus(ingredientX).forEach { ingredientY ->
                 allIngredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
-                    val recipe = SkyrimPotionRecipe_Enum(listOf(ingredientX, ingredientY, ingredientZ))
+
+                    val recipe = SkyrimPotionRecipe_Enum(
+                        listOf(
+                            ingredientX,
+                            ingredientY,
+                            ingredientZ)
+                    )
+
                     if (recipe.effects.size >= 3) {
                         recipeSets.add(recipe.ingredients.toSet())
+//                        recipes.add(recipe)
                     }
+
+                    threeIngredCounterEnum++
                 }
             }
         }
 
-        val recipes = recipeSets.map { recipeSet -> SkyrimPotionRecipe_Enum(recipeSet.toList()) }
-
-        return recipes.sortedByDescending {
-            it.effects.size
+        return recipeSets.map {
+            recipeIngredientSet -> SkyrimPotionRecipe_Enum(recipeIngredientSet.toList())
         }
+
+//        return recipes.sortedByDescending {
+//            it.effects.size
+//        }
     }
 
     fun bruteForceFindTwoIngredientFormulasWithMostEffects_Json() : List<SkyrimPotionRecipe> {
+        twoIngredCount = 0
         val recipeSets = mutableSetOf<Set<IngredientFromJson>>()
 
         ingredients.forEach { ingredientX ->
             ingredients.minus(ingredientX).forEach { ingredientY ->
-                    val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY))
-                    if (recipe.getEffects().size >= 2) {
-                        recipeSets.add(recipe.ingredients.toSet())
-                    }
+                twoIngredCount++
+                val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY))
+                if (recipe.getEffects().size >= 2) {
+                    recipeSets.add(recipe.ingredients.toSet())
+                }
             }
         }
 
@@ -94,8 +116,6 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
             it.getEffects().size
         }
     }
-
-
 }
 
 fun main() {
@@ -138,7 +158,13 @@ fun main() {
     }
     logger.info(sb.toString())
 
-    logger.info("it took ${twoIngredTimer.elapsed()} us to brute force two ingredients.")
-    logger.info("it took ${threeIngredTimer_json.elapsed()} us to brute force three ingredients (via json).")
-    logger.info("it took ${threeIngredTimer_enum.elapsed()} us to brute force three ingredients (via enum).")
+    logger.info("it took ${twoIngredTimer.elapsed()} us " +
+            "to brute force 2 of ${skyrimPotionFinder.ingredients.size} ingredients " +
+            "(${skyrimPotionFinder.twoIngredCount} mixes)(via json).")
+    logger.info("it took ${threeIngredTimer_json.elapsed()} us " +
+            "to brute force 3 of ${skyrimPotionFinder.ingredients.size} ingredients " +
+            "(${skyrimPotionFinder.threeIngredCounter} mixes)(via json).")
+    logger.info("it took ${threeIngredTimer_enum.elapsed()} us " +
+            "to brute force 3 of ${Ingredient.values().size} ingredients " +
+            "(${skyrimPotionFinder.threeIngredCounterEnum} mixes)(via enum).")
 }
