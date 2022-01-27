@@ -1,13 +1,20 @@
 package com.syntj.skyrim
 
 import com.syntj.skyrim.SkyrimPotionFinder.Companion.logger
+import jdk.nashorn.internal.ir.FunctionCall
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.time.LocalDateTime
 
 class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) : SkyrimIngredientsAnalyzer(jsonPath) {
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(SkyrimPotionFinder::class.java)
+
+        val timerBegin: Long = LocalDateTime.now()
+        fun timeStart(name: String) {
+
+        }
     }
 
     /**
@@ -57,12 +64,10 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
 
         ingredients.forEach { ingredientX ->
             ingredients.minus(ingredientX).forEach { ingredientY ->
-//                ingredients.minus(ingredientX).minus(ingredientY).forEach { ingredientZ ->
                     val recipe = SkyrimPotionRecipe(listOf(ingredientX, ingredientY))
                     if (recipe.getEffects().size >= 2) {
                         recipeSets.add(recipe.ingredients.toSet())
                     }
-//                }
             }
         }
 
@@ -72,6 +77,7 @@ class SkyrimPotionFinder (jsonPath: String = SkyrimAlchemyConstants.JSON_PATH) :
             it.getEffects().size
         }
     }
+
 
 }
 
