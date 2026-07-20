@@ -2,7 +2,9 @@ package com.syntj.skyrim
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.syntj.skyrim.SkyrimAlchemyConstants.JSON_PATH
+import com.syntj.skyrim.domain.IngredientFromJson
+import com.syntj.skyrim.domain.IngredientList
+import com.syntj.skyrim.domain.SkyrimAlchemyConstants
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -16,7 +18,7 @@ class IngredientsJsonImporter {
         val logger : Logger = LoggerFactory.getLogger(IngredientsJsonImporter::class.java)
     }
 
-    fun readIngredientsJson(path: String = JSON_PATH): List<IngredientFromJson> {
+    fun readIngredientsJson(path: String = SkyrimAlchemyConstants.JSON_PATH): List<IngredientFromJson> {
         logger.info("Reading ingredients from $path")
 
         checkIfFileIsReadable(path)

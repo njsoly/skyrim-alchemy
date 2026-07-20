@@ -1,4 +1,4 @@
-package com.syntj.skyrim
+package com.syntj.skyrim.domain
 
 open class SkyrimPotionRecipe(val ingredients: List<AlchemyIngredient>) {
 

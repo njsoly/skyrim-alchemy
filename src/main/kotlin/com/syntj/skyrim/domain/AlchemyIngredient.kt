@@ -1,4 +1,4 @@
-package com.syntj.skyrim
+package com.syntj.skyrim.domain
 
 /**
  * Common shape shared by [Ingredient] (hardcoded enum) and [IngredientFromJson] (JSON-backed),

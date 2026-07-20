@@ -1,6 +1,9 @@
 package com.syntj.skyrim
 
 import com.syntj.skyrim.SkyrimPotionFinder.Companion.logger
+import com.syntj.skyrim.domain.AlchemyIngredient
+import com.syntj.skyrim.domain.SkyrimPotionRecipe
+import com.syntj.skyrim.util.Timers
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -103,7 +106,7 @@ fun main() {
     logger.info("Restore health recipe: \n${ restoreHealthRecipe.getStats() }")
 
     val twoIngredTimer = Timers.timerStart("twoIngredients")
-    skyrimPotionFinder.bruteForceFindTwoIngredientFormulasWithMostEffects()
+    val recipes2 = skyrimPotionFinder.bruteForceFindTwoIngredientFormulasWithMostEffects()
     twoIngredTimer.stop()
 
     val threeIngredTimer = Timers.timerStart("threeIngredients")

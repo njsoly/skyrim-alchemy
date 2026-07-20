@@ -1,4 +1,4 @@
-package com.syntj.skyrim
+package com.syntj.skyrim.domain
 
 data class IngredientFromJson (
     val name: String,

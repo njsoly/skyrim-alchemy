@@ -1,5 +1,8 @@
 package com.syntj.skyrim
 
+import com.syntj.skyrim.domain.AlchemyIngredient
+import com.syntj.skyrim.domain.Effect
+import com.syntj.skyrim.domain.SkyrimAlchemyConstants
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.IOException

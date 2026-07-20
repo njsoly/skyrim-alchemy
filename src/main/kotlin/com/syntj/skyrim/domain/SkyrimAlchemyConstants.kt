@@ -1,6 +1,4 @@
-@file:Suppress("unused")
-
-package com.syntj.skyrim
+package com.syntj.skyrim.domain
 
 object SkyrimAlchemyConstants {
     const val JSON_PATH = "data/ingredients.json"

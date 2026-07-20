@@ -1,6 +1,6 @@
-package com.syntj.skyrim
+package com.syntj.skyrim.domain
 
-import com.syntj.skyrim.Effect.*
+import com.syntj.skyrim.domain.Effect.*
 
 @Suppress("unused")
 enum class Ingredient (

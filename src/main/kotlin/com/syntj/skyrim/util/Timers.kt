@@ -1,4 +1,4 @@
-package com.syntj.skyrim
+package com.syntj.skyrim.util
 
 object Timers {
     val times = mutableListOf<TimeElapsed>()
