@@ -5,9 +5,9 @@ import com.syntj.skyrim.Effect.*
 @Suppress("unused")
 enum class Ingredient (
     val description: String,
-    val weight: Double? = null,
-    val value: Double? = null,
-    val image: String? = null,
+    override val weight: Double? = null,
+    override val value: Double? = null,
+    override val image: String? = null,
     val effects: List<Effect?> = listOf(null, null, null, null),
     /** Whether or not this ingredient may be found at home, at a somewhat regular interval.
      *
@@ -19,7 +19,7 @@ enum class Ingredient (
     val farmable: Boolean? = false,
     val solstheimOnly: Boolean = false,
     val khajitsOnly: Boolean = false,
-) {
+) : AlchemyIngredient {
     AbeceanLongfin(
         description = "Abecean Longfin",
         weight = 0.5,
@@ -447,4 +447,8 @@ enum class Ingredient (
         farmable = true,
     ),
 
+    ;
+
+    override val displayName: String get() = description
+    override val effectNames: List<String> get() = effects.filterNotNull().map { it.description }
 }

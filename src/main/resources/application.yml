@@ -1,0 +1,3 @@
+ingredient:
+  # Which ingredient data source to use: JSON (data/ingredients.json) or ENUM (hardcoded Ingredient enum).
+  source: JSON
