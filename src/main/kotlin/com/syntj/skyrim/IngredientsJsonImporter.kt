@@ -17,6 +17,7 @@ class IngredientsJsonImporter {
     }
 
     fun readIngredientsJson(path: String = JSON_PATH): List<IngredientFromJson> {
+        logger.info("Reading ingredients from $path")
 
         checkIfFileIsReadable(path)
 
