@@ -1,0 +1,13 @@
+volumes:
+  pgdata:
+    driver: local
+
+services:
+  skyrim-alchemy:
+    build:
+      context: . # this is taken as relative to this compose file
+      dockerfile: Dockerfile
+    volumes:
+      - pgdata:/var/lib/postgresql/16/main
+    ports:
+      - "5432:5432"

@@ -33,4 +33,9 @@ RUN service postgresql start \
     && service postgresql stop
 USER root
 
+# Persist Postgres data outside the container layer. Mount a named volume
+# here at `docker run` time, e.g.:
+#   docker run -v pgdata_skyrim:/var/lib/postgresql/16/main ...
+VOLUME ["/var/lib/postgresql/16/main"]
+
 CMD ["bash"]
