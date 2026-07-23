@@ -1,0 +1,55 @@
+Cure Disease,21,0.50,5,0
+Damage Health,3,3.00,2,1
+Damage Magicka,52,2.20,3,0
+Damage Magicka Regen,265,0.50,100,5
+Damage Stamina,43,1.80,3,0
+Damage Stamina Regen,159,0.30,100,5
+Fear,120,5.00,1,30
+Fortify Alteration,47,0.20,4,60
+Fortify Barter,48,2.00,1,30
+Fortify Block,118,0.50,4,60
+Fortify Carry Weight,208,0.15,4,300
+Fortify Conjuration,75,0.25,5,60
+Fortify Destruction,151,0.50,5,60
+Fortify Enchanting,14,0.60,1,30
+Fortify Health,82,0.35,4,60
+Fortify Heavy Armor,55,0.50,2,60
+Fortify Illusion,94,0.40,4,60
+Fortify Light Armor,55,0.50,2,60
+Fortify Lockpicking,25,0.50,2,30
+Fortify Magicka,71,0.30,4,60
+Fortify Marksman,118,0.50,4,60
+Fortify One-handed,118,0.50,4,60
+Fortify Pickpocket,118,0.50,4,60
+Fortify Restoration,118,0.50,4,60
+Fortify Smithing,82,0.75,4,30
+Fortify Sneak,118,0.50,4,60
+Fortify Stamina,71,0.30,4,60
+Fortify Two-handed,118,0.50,4,60
+Frenzy,107,15.00,1,10
+Invisibility,261,100.00,0,4
+Lingering Damage Health,86,12.00,1,10
+Lingering Damage Magicka,71,10.00,1,10
+Lingering Damage Stamina,12,1.80,1,10
+Paralysis,285,500.00,0,1
+Ravage Health,6,0.40,2,10
+Ravage Magicka,15,1.00,2,10
+Ravage Stamina,24,1.60,2,10
+Regenerate Health,177,0.10,5,300
+Regenerate Magicka,177,0.10,5,300
+Regenerate Stamina,177,0.10,5,300
+Resist Fire,86,0.50,3,60
+Resist Frost,86,0.50,3,60
+Resist Magic,51,1.00,1,60
+Resist Poison,118,0.50,4,60
+Resist Shock,86,0.50,3,60
+Restore Health,21,0.50,5,0
+Restore Magicka,25,0.60,5,0
+Restore Stamina,25,0.60,5,0
+Slow,247,1.00,50,5
+Waterbreathing,100,30.00,0,5
+Weakness to Fire,48,0.60,3,30
+Weakness to Frost,40,0.50,3,30
+Weakness to Magic,51,1.00,2,30
+Weakness to Poison,51,1.00,2,30
+Weakness to Shock,56,0.70,3,30
