@@ -154,7 +154,3 @@ open class SkyrimIngredientsAnalyzer (
         }
     }
 }
-
-fun main() {
-   SkyrimIngredientsAnalyzer().run()
-}

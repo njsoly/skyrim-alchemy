@@ -1,7 +1,7 @@
 package com.syntj.skyrim
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import com.syntj.skyrim.domain.IngredientFromJson
 import com.syntj.skyrim.domain.IngredientList
 import com.syntj.skyrim.domain.SkyrimAlchemyConstants
@@ -14,7 +14,7 @@ import java.nio.file.Path
 class IngredientsJsonImporter {
 
     companion object {
-        val objectMapper = ObjectMapper().registerModule(KotlinModule())
+        val objectMapper = ObjectMapper().registerModule(kotlinModule())
         val logger : Logger = LoggerFactory.getLogger(IngredientsJsonImporter::class.java)
     }
 

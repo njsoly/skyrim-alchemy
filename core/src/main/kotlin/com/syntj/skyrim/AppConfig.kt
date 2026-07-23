@@ -1,9 +1,10 @@
 package com.syntj.skyrim
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -28,8 +29,9 @@ object AppConfigLoader {
     private val logger: Logger = LoggerFactory.getLogger(AppConfigLoader::class.java)
 
     private val objectMapper = ObjectMapper(YAMLFactory())
-        .registerModule(KotlinModule())
+        .registerModule(kotlinModule())
         .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
+        .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
 
     fun load(resourcePath: String = DEFAULT_RESOURCE): AppConfig {
         val resourceStream = javaClass.classLoader.getResourceAsStream(resourcePath)
