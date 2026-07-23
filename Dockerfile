@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-pip \
         git \
         openjdk-17-jdk-headless \
-        maven \
+        maven=3.8.7-2 \
         postgresql \
     && rm -rf /var/lib/apt/lists/*
 
@@ -22,9 +22,6 @@ RUN git clone https://github.com/njsoly/skyrim-alchemy.git
 #     git checkout <commit-sha>
 
 WORKDIR /opt/skyrim-alchemy
-
-# Build the project into a bootable (fat) jar via the maven-shade-plugin.
-RUN mvn -B -q clean package -DskipTests
 
 # Create the "skyrim" Postgres database.
 USER postgres
