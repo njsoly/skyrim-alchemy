@@ -18,9 +18,7 @@ class EffectsService(private val effectsHtmlClient: EffectsHtmlClient = EffectsH
     }
 
     fun getEffects(): List<EffectData> {
-        val rows = effectsHtmlClient.fetchEffectsTableRows()
-
-        return parseEffects(rows)
+        return effectsHtmlClient.fetchEffectsTableRows()
     }
 
     private fun parseEffects(rows: List<List<String>>): List<EffectData> {
