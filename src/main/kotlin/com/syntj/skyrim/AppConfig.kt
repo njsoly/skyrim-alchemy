@@ -3,7 +3,9 @@ package com.syntj.skyrim
 import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
+import com.fasterxml.jackson.module.kotlin.SingletonSupport
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -28,7 +30,16 @@ object AppConfigLoader {
     private val logger: Logger = LoggerFactory.getLogger(AppConfigLoader::class.java)
 
     private val objectMapper = ObjectMapper(YAMLFactory())
-        .registerModule(KotlinModule())
+        .registerModule(
+            KotlinModule.Builder()
+                .withReflectionCacheSize(512)
+                .configure(KotlinFeature.NullToEmptyCollection, false)
+                .configure(KotlinFeature.NullToEmptyMap, false)
+                .configure(KotlinFeature.NullIsSameAsDefault, false)
+                .configure(KotlinFeature.SingletonSupport, false)
+                .configure(KotlinFeature.StrictNullChecks, false)
+                .build()
+        )
         .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
 
     fun load(resourcePath: String = DEFAULT_RESOURCE): AppConfig {
