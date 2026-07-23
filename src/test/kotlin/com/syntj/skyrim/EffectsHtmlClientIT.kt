@@ -9,11 +9,11 @@ import org.junit.Test
  * network. Run via `mvn verify` (or `mvn failsafe:integration-test`), since
  * this is excluded from the regular unit test (`mvn test`) run.
  *
- * NOTE: As of writing, https://www.powtions.com/effects is a client-rendered
- * SPA, so the raw HTML fetched by Jsoup does not contain a `<table>` with
- * effect data. This test only asserts the page is reachable until
- * EffectsHtmlClient is updated to pull data from the site's underlying API
- * (or a JS-capable fetcher is used).
+ * NOTE: https://www.powtions.com/effects is a client-rendered SPA, so the
+ * raw HTML fetched by Jsoup does not contain a `<table>` with effect data;
+ * [EffectsHtmlClient] instead pulls the data out of the JS bundles the page
+ * references. See [EffectsHtmlClientTest] for a network-free unit test of
+ * that parsing against local copies of the page and its bundles.
  */
 class EffectsHtmlClientIT {
 
